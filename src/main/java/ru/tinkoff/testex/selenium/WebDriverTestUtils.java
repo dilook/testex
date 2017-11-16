@@ -3,6 +3,7 @@ package ru.tinkoff.testex.selenium;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -18,7 +19,7 @@ import static org.openqa.selenium.Proxy.ProxyType.AUTODETECT;
  * Created by Di on 24.08.2017.
  */
 public class WebDriverTestUtils {
-    public static final String url = extractPath("src/test/resources/app.properties", "app.url");
+    public static final String baseUrl = extractPath("src/test/resources/app.properties", "app.url");
 
     /**
      * Выбор вебдрайвера в зависимости от значения параметра jvm -Dbrowser
@@ -50,18 +51,23 @@ public class WebDriverTestUtils {
                 return ieDriver;
 
             case "CR":
-                return caps == null ? new ChromeDriver() : new ChromeDriver(caps);
-
+                ChromeOptions co = new ChromeOptions()
+                        .addArguments("--start-maximized");
+                caps.setCapability(ChromeOptions.CAPABILITY, co);
+                return new ChromeDriver(caps);
             default:
-                return caps == null ? new ChromeDriver() : new ChromeDriver(caps);
+                co = new ChromeOptions()
+                        .addArguments("--start-maximized");
+                caps.setCapability(ChromeOptions.CAPABILITY, co);
+                return new ChromeDriver(caps);
         }
 
     }
 
     /**
      * Метод вычитывает проперти из файла
-     * @param propFilePath
-     * @param propName
+     * @param propFilePath - путь до свойства
+     * @param propName - название свойства
      * @return
      */
     public static String extractPath(String propFilePath, String propName) {
@@ -69,8 +75,6 @@ public class WebDriverTestUtils {
 
         try (FileInputStream fis = new FileInputStream(propFilePath)) {
             properties.load(fis);
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
         }

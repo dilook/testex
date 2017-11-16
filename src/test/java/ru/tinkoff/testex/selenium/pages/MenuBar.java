@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import ru.tinkoff.testex.selenium.pages.common.Page;
 
 import java.util.List;
 
@@ -27,7 +28,6 @@ public class MenuBar extends Page {
     public void goTo(String itemName) {
         Boolean found = false;
         for (WebElement item : menuItems) {
-            System.out.println(item.getText());
             if (item.getText().equals(itemName)) {
                 item.click();
                 webDriverWait.until(titleContains(itemName.toLowerCase()));
@@ -39,6 +39,6 @@ public class MenuBar extends Page {
         String message = found ? "Переход в пункт меню \"" + itemName + "\""
                 : "Пункт меню \"" + itemName + "\" не найден";
 
-        System.out.print(message);
+        System.out.println(message);
     }
 }
