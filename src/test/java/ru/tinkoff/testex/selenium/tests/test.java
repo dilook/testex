@@ -51,9 +51,14 @@ public class test extends TestBase {
                 app.hcsMoscowPage.getErrorIfExist("Код плательщика за ЖКУ в Москве"));
     }
 
+    /**
+     * Метод генерирует случайную строку заданной длины из символов "0123456789"
+     * @param len - длина строки
+     * @return
+     */
     private String getRand(int len) {
         String digit = "0123456789";
-        Random rnd = new Random(47);
+        Random rnd = new Random();
 
         StringBuilder sb = new StringBuilder(len);
         for (int i = 0; i < len; i++)
