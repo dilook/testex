@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 /**
  * Created by Di on 16.11.2017.
  */
-public class UiMenu extends UiList {
+public class UiMenu extends UiItems {
 
     public UiMenu(WebDriver webDriver) {
         super("menu", webDriver);

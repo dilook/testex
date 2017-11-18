@@ -1,24 +1,20 @@
 package ru.tinkoff.testex.selenium.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import ru.tinkoff.testex.selenium.pages.common.UiList;
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOfElementLocated;
+import ru.tinkoff.testex.selenium.pages.common.UiItems;
 
 /**
  * Created by Di on 16.11.2017.
  */
-public class RegionsPage extends UiList {
+public class RegionsPage extends UiItems {
 
     public RegionsPage(WebDriver webDriver) {
         super("regions", webDriver);
     }
 
     @Override
-    public void selectUiItemByText(String regionName){
+    public void selectUiItemByText(String regionName) {
         super.selectUiItemByText(regionName);
-        webDriverWait.until(invisibilityOfElementLocated(By.cssSelector(".ui-modal__container_regions")));
     }
 
 }

@@ -1,16 +1,17 @@
 package ru.tinkoff.testex.selenium.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import ru.tinkoff.testex.selenium.pages.common.Page;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
 import static ru.tinkoff.testex.selenium.WebDriverTestUtils.baseUrl;
 
 /**
  * Created by Di on 15.11.2017.
  */
 public class MainPage extends Page {
+    private static final Logger LOGGER = Logger.getLogger(MainPage.class);
 
     public MenuBar menuBar;
 
@@ -20,8 +21,9 @@ public class MainPage extends Page {
     }
 
     public MainPage open() {
+        LOGGER.info("Открытие страницы по адресу " + baseUrl);
         webDriver.get(baseUrl);
-        webDriverWait.until(titleIs("Лучший онлайн-банк. Кредитные и дебетовые карты с доставкой на дом."));
+        //webDriverWait.until(titleIs("Лучший онлайн-банк. Кредитные и дебетовые карты с доставкой на дом."));
         return this;
     }
 }

@@ -1,7 +1,7 @@
 package ru.tinkoff.testex.selenium.tests;
 
-import ru.tinkoff.testex.selenium.app.Application;
 import org.junit.Before;
+import ru.tinkoff.testex.selenium.app.Application;
 
 /**
  * Created by Di on 17.09.2017.
